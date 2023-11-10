@@ -1,0 +1,61 @@
+<%- include("templates/header") %>
+<div class="columns m-3 is-centered">
+  <div class="column is-narrow">
+      
+<div class="card p-4">
+  <div class="card-content">
+    <div class="content">
+      <form action="/adddetalle" method="POST">
+      <div class="field">
+        <label class="label">Codigo Encabezado</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="codigocat" id="CodEnvioEncabezado" name="CodEnvioEncabezado" value="<%=idEnca.CodEnvioEncabezado%>" readonly="readonly">
+        </div>
+      </div>
+      <div class="field">
+          <label class="label">Producto</label>
+          <div class="control">
+              <div class="select">
+                  <select name="Codproducto" id="Codproducto">
+                      <% for (var i =0; i<prod.length; i++){%>
+                           <option value="<%=prod[i].Codproducto %>""><%=prod[i].nombre%></option>
+                        <%}%>
+                  </select>
+                </div>
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Cantidad</label>
+          <div class="control">
+            <input class="input" type="number" placeholder="cantidad" id="cantidad" name="cantidad">
+          </div>
+        </div>
+      <button type="submit" class="button is-info is-outlined">Guardar</button>
+      <a href="/enviosenca" class="button is-info is-outlined">Regresar</a>
+      </form>
+    </div>
+  </div>
+</div>
+  </div>
+  <div class="column is-three-quarters">
+    <table class="table is-hoverable">
+      <thead>
+        <tr>
+          <th>Codigo Envio</th>
+          <th>Producto</th>
+          <th>Cantidad despachada</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (var i =0; i<details.length; i++){%>
+          <tr>
+            <th scope="row"><%=details[i].CodEnvioEncabezado%></th>
+            <td><%=details[i].productos.nombre%></td>
+            <td><%=details[i].cantidad%></td>
+          </tr>
+        <%}%>
+      </tbody>
+    </table>
+  </div>
+</div>
+<%- include("templates/footer") %>

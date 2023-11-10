@@ -1,0 +1,102 @@
+<%- include("templates/header.ejs") %>
+<div class="columns m-3 is-centered">
+  <div class="column is-narrow">
+    <div class="card p-4">
+      <div class="card-content">
+        <div class="content">
+          <form action="/addproducto" method="POST">
+          <div class="field">
+            <label class="label">Codigo Producto</label>
+            <div class="control">
+              <input class="input" type="text" id="Codproducto" name="Codproducto" required>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">nombre</label>
+            <div class="control">
+              <input class="input" type="text" id="nombre" name="nombre" required>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Categoria</label>
+            <div class="control">
+                <div class="select">
+                    <select name="Codcategoria" id="Codcategoria">
+                        <% for (var i =0; i<categorias.length; i++){%>
+                             <option value="<%=categorias[i].Codcategoria %>""><%=categorias[i].nombre%></option>
+                          <%}%>
+                    </select>
+                  </div>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">costo</label>
+            <div class="control">
+              <input class="input" type="text" id="costo" name="costo" required>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">precio</label>
+            <div class="control">
+              <input class="input" type="text" id="precio" name="precio" required>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">existencia</label>
+            <div class="control">
+              <input class="input" type="text" id="existencia" name="existencia" required>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Estado</label>
+            <div class="control">
+                <div class="select">
+                    <select id="estado" name="estado">
+                      <option value="true">Activo</option>
+                      <option value="false">Inactivo</option>
+                    </select>
+                  </div>
+            </div>
+          </div>
+          <button type="submit" class="button is-info is-outlined">Guardar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="column is-three-quarters">
+    <table class="table is-hoverable">
+      <thead>
+        <tr>
+          <th>Codigo Producto</th>
+          <th>nombre</th>
+          <th>categoria</th>
+          <th>costo</th>
+          <th>precio</th>
+          <th>stock</th>
+          <th>Estado</th>
+          <th>fecha ingreso</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (var i =0; i<productos.length; i++){%>
+            <tr>
+              <th scope="row"><%=productos[i].Codproducto%></th>
+              <td><%=productos[i].nombre%></td>
+              <td><%=productos[i].categoria.nombre%></td>
+              <td><%=productos[i].costo%></td>
+              <td><%=productos[i].precio%></td>
+              <td><%=productos[i].existencia%></td>
+              <td><%=productos[i].estado ? 'Activo':'Inactivo'%></td>
+              <td><%=productos[i].fechaingreso %></td>
+              <td>
+                <a href="/editproducto/<%=productos[i]._id%>" class="button is-warning">Editar</a>
+                <a href="/deleteproducto/<%=productos[i]._id%>" class="button is-danger">Eliminar</a>
+              </td>
+            </tr>
+          <%}%>
+      </tbody>
+    </table>
+  </div>
+</div>
+<%- include("templates/footer.ejs") %>

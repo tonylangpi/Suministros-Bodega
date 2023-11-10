@@ -1,0 +1,49 @@
+<%- include("templates/header.ejs") %>
+<div class="columns m-3 is-centered">
+  <div class="column is-narrow">
+    <div class="card p-4">
+      <div class="card-content">
+        <div class="content">
+          <form action="/addcategoria" method="POST">
+          <div class="field">
+            <label class="label">Codigo Categoria</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="codigocat" id="Codcategoria" name="Codcategoria" required>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Categoria</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="codigocat" id="nombre" name="nombre" required>
+            </div>
+          </div>
+          <button type="submit" class="button is-info is-outlined">Guardar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="column is-three-quarters">
+    <table class="table is-hoverable">
+      <thead>
+        <tr>
+          <th>Codigo Categoria</th>
+          <th>Categoria</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (var i =0; i<categorias.length; i++){%>
+          <tr>
+            <th scope="row"><%=categorias[i].Codcategoria%></th>
+            <td><%=categorias[i].nombre%></td>
+            <td>
+              <a href="/editcategoria/<%=categorias[i]._id%>" class="button is-warning">Editar</a>
+              <a href="/deletecategoria/<%=categorias[i]._id%>" class="button is-danger">Eliminar</a>
+            </td>
+          </tr>
+        <%}%>
+      </tbody>
+    </table>
+  </div>
+</div>
+<%- include("templates/footer.ejs") %>

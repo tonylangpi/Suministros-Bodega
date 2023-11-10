@@ -1,0 +1,25 @@
+<%- include("templates/header") %>
+<div class="columns m-3 is-centered">
+  <div class="column">
+    <table class="table is-hoverable">
+      <thead>
+        <tr>
+          <th>Codigo Envio</th>
+          <th>Producto</th>
+          <th>Cantidad despachada</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (var i =0; i<details.length; i++){%>
+          <tr>
+            <th scope="row"><%=details[i].CodEnvioEncabezado%></th>
+            <td><%=details[i].productos.nombre%></td>
+            <td><%=details[i].cantidad%></td>
+          </tr>
+        <%}%>
+      </tbody>
+    </table>
+    <a href="/" class="button is-info is-outlined">Regresar</a>
+  </div>
+</div>
+<%- include("templates/footer") %>

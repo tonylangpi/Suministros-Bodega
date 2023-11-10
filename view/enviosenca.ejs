@@ -1,0 +1,65 @@
+<%- include("templates/header.ejs") %>
+<div class="columns m-3 is-centered">
+  <div class="column is-narrow">
+    <div class="card p-4">
+      <div class="card-content">
+        <div class="content">
+          <form action="/addenvioenca" method="POST">
+            <h1><%=titulo %></h1>
+          <div class="field">
+            <label class="label">Numero de envio o codigo envio</label>
+            <div class="control">
+              <input class="input" type="text" id="CodEnvioEncabezado" name="CodEnvioEncabezado" required>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Empresa</label>
+            <div class="control">
+                <div class="select">
+                    <select name="codempresa" id="codempresa">
+                        <% for (var i =0; i<empresas.length; i++){%>
+                             <option value="<%=empresas[i].codempresa %>""><%=empresas[i].nombre%></option>
+                          <%}%>
+                    </select>
+                  </div>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Fecha estimada entrega</label>
+            <div class="control">
+              <input class="input" type="date" id="fechaentrega" name="fechaentrega" required>
+            </div>
+          </div>
+          <button type="submit" class="button is-info is-outlined">Guardar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="column is-three-quarters">
+    <table class="table is-hoverable">
+      <thead>
+        <tr>
+          <th>Codigo Envio</th>
+          <th>empresa</th>
+          <th>fecha ingreso pedido</th>
+          <th>fecha entrega</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (var i =0; i<encabezados.length; i++){%>
+            <tr>
+              <th scope="row"><%=encabezados[i].CodEnvioEncabezado%></th>
+              <td><%=encabezados[i].empresas.nombre%></td>
+              <td><%=encabezados[i].fechaingreso%></td>
+              <td><%=encabezados[i].fechaentrega%></td>
+              <td>
+                <a href="/agregarproductos/<%=encabezados[i]._id%>" class="button is-warning">Detallar</a>
+              </td>
+            </tr>
+          <%}%>
+      </tbody>
+    </table>
+  </div>
+</div>
+<%- include("templates/footer.ejs") %>

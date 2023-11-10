@@ -1,0 +1,49 @@
+<%- include("templates/header.ejs") %>
+<div class="columns m-3 is-centered">
+  <div class="column is-narrow">
+    <div class="card p-4">
+      <div class="card-content">
+        <div class="content">
+          <form action="/addempresa" method="POST">
+          <div class="field">
+            <label class="label">Codigo Empresa</label>
+            <div class="control">
+              <input class="input" type="text" id="codempresa" name="codempresa" required>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">nombre empresa</label>
+            <div class="control">
+              <input class="input" type="text" id="nombre" name="nombre" required>
+            </div>
+          </div>
+          <button type="submit" class="button is-info is-outlined">Guardar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="column is-three-quarters">
+    <table class="table is-hoverable">
+      <thead>
+        <tr>
+          <th>Codigo Empresa</th>
+          <th>nombre</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (var i =0; i<empresas.length; i++){%>
+            <tr>
+              <th scope="row"><%=empresas[i].codempresa%></th>
+              <td><%=empresas[i].nombre%></td>
+              <td>
+                <a href="/editempresa/<%=empresas[i]._id%>" class="button is-warning">Editar</a>
+                <a href="/deleteempresa/<%=empresas[i]._id%>" class="button is-danger">Eliminar</a>
+              </td>
+            </tr>
+          <%}%>
+      </tbody>
+    </table>
+  </div>
+</div>
+<%- include("templates/footer.ejs") %>

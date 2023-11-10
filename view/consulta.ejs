@@ -1,0 +1,30 @@
+<%- include("templates/header.ejs") %>
+<div class="columns m-3 p-5 is-centered">
+<div class="column">
+    <table class="table is-hoverable">
+      <thead>
+        <tr>
+          <th>Codigo Envio</th>
+          <th>empresa</th>
+          <th>fecha ingreso pedido</th>
+          <th>fecha entrega</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (var i =0; i<encabezados.length; i++){%>
+          <tr>
+            <th scope="row"><%=encabezados[i].CodEnvioEncabezado%></th>
+            <td><%=encabezados[i].empresas.nombre%></td>
+            <td><%=encabezados[i].fechaingreso%></td>
+            <td><%=encabezados[i].fechaentrega%></td>
+            <td>
+              <a href="/solodetalles/<%=encabezados[i]._id%>" class="button is-warning">VerDetalles</a>
+            </td>
+          </tr>
+        <%}%>
+      </tbody>
+    </table>
+    <a href="/" class="button is-info is-outlined">Regresar</a>
+  </div>
+</div>
+<%- include("templates/footer.ejs") %>

@@ -1,0 +1,65 @@
+<%- include("templates/header.ejs") %>
+<div class="card p-4">
+    <div class="card-content">
+        <h1><%=titulo%></h1>
+      <div class="content">
+        <form action="/updateproducto/<%=prod._id%>" method="POST">
+        <div class="field">
+          <label class="label">Codigo Producto</label>
+          <div class="control">
+            <input class="input" type="text" id="Codproducto" name="Codproducto" value="<%=prod.Codproducto%>" required disabled>
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">nombre</label>
+          <div class="control">
+            <input class="input" type="text" id="nombre" name="nombre" value="<%=prod.nombre%>" required>
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Categoria</label>
+          <div class="control">
+              <div class="select">
+                  <select name="Codcategoria" id="Codcategoria">
+                      <% for (var i =0; i<cate.length; i++){%>
+                           <option value="<%=cate[i].Codcategoria %>" <%= cate[i].Codcategoria === prod.categoria.Codcategoria ? 'selected' : '' %> ><%=cate[i].nombre%></option>
+                        <%}%>
+                  </select>
+                </div>
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">costo</label>
+          <div class="control">
+            <input class="input" type="text" id="costo" name="costo" value="<%=prod.costo%>"  required>
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">precio</label>
+          <div class="control">
+            <input class="input" type="text" id="precio" name="precio" value="<%=prod.precio%>" required>
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Estado</label>
+          <div class="control">
+              <div class="select">
+                  <select id="estado" name="estado">
+                    <% if (prod.estado) { %>
+                    <option value="true" selected>Activo</option>
+                    <option value="false" >Inactivo</option>
+                    <% }else { %>
+                    <option value="true">Activo</option>
+                    <option value="false" selected>Inactivo</option>
+                    <% } %>
+                  </select>
+                </div>
+          </div>
+        </div>
+        <button type="submit" class="button is-info is-outlined">Actualizar</button>
+        <a href="/producto" class="button is-info is-outlined">Regresar</a>
+        </form>
+      </div>
+    </div>
+  </div>
+<%- include("templates/footer.ejs") %>

@@ -1,0 +1,24 @@
+<%- include("templates/header") %>
+<div class="card p-4">
+    <div class="card-content">
+      <div class="content">
+        <form action="/updatecategoria/<%=cat._id%>" method="POST">
+        <div class="field">
+          <label class="label">Codigo Categoria</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="codigocat" id="Codcategoria" name="Codcategoria" value="<%=cat.Codcategoria%>" readonly="readonly">
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Categoria</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="codigocat" id="nombre" name="nombre" value="<%=cat.nombre%>" >
+          </div>
+        </div>
+        <button type="submit" class="button is-info is-outlined">Guardar</button>
+        <a href="/categoria" class="button is-info is-outlined">Regresar</a>
+        </form>
+      </div>
+    </div>
+  </div>
+<%- include("templates/footer") %>
